@@ -48,11 +48,11 @@ FROM alpine:3.11
 ARG VCS_REF=abcdef1
 ARG BUILD_DATE=2020-04-01T00:00:00Z
 LABEL \
-    com.github.actions.author="Format HCL files"
-    com.github.actions.color="white"
-    com.github.actions.description="Automatically format HCL files and commit fixed files back to current branch."
-    com.github.actions.icon="wind"
-    com.github.actions.name="Format HCL files and commit them"
+    com.github.actions.author="Format HCL files" \
+    com.github.actions.color="white" \
+    com.github.actions.description="Automatically format HCL files and commit fixed files back to current branch." \
+    com.github.actions.icon="wind" \
+    com.github.actions.name="Format HCL files and commit them" \
     org.label-schema.build-date="${BUILD_DATE}" \
     org.label-schema.description="Docker image with GitHub action running format-hcl from https://github.com/ChristophShyper/docker-terragrunt." \
 	org.label-schema.name="action-format-hcl" \
