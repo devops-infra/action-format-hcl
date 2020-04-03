@@ -34,12 +34,12 @@ RUN set -eux \
     && chmod +x /usr/bin/format-hcl \
 	&& curl -sS -L \
         https://raw.githubusercontent.com/ChristophShyper/docker-terragrunt/master/fmt/fmt.sh \
-        -o /fmt.sh \
-    && chmod +x /fmt.sh \
+        -o /usr/bin/fmt.sh \
+    && chmod +x /usr/bin/fmt.sh \
 	&& curl -sS -L \
         https://raw.githubusercontent.com/ChristophShyper/docker-terragrunt/master/fmt/terragrunt-fmt.sh \
-        -o /terragrunt-fmt.sh \
-    && chmod +x /terragrunt-fmt.sh
+        -o /usr/bin/terragrunt-fmt.sh \
+    && chmod +x /usr/bin/terragrunt-fmt.sh
 
 # Use a clean tiny image to store artifacts in
 FROM alpine:3.11
@@ -66,8 +66,7 @@ LABEL \
     repository="https://github.com/ChristophShyper/action-format-hcl" \
     alpine="3.11"
 
-COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/
-COPY --from=builder /fmt.sh /terragrunt-fmt.sh /
+COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh /usr/bin/
 
 RUN set -eux \
     && chmod +x /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh \
