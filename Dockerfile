@@ -83,5 +83,5 @@ RUN set -eux \
     && rm -rf /var/cache/* \
     && rm -rf /root/.cache/*
 
-WORKDIR /data
+WORKDIR /github/workspace
 ENTRYPOINT format-hcl
