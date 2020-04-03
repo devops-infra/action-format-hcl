@@ -1,45 +1,6 @@
-FROM debian:stable-slim as builder
-
-# Set latest versions as default for Terraform
-ARG TF_VERSION=latest
-
-# Install build dependencies on builder
-RUN set -eux \
-	&& DEBIAN_FRONTEND=noninteractive apt-get update -qq \
-	&& DEBIAN_FRONTEND=noninteractive apt-get install -qq -y --no-install-recommends --no-install-suggests \
-		ca-certificates \
-		curl \
-		git \
-		unzip \
-	&& rm -rf /var/lib/apt/lists/* \
-# Get Terraform
-# TF_VERSION needs to point to explicit version, e.g. 0.12.24
-	&& if [ "${TF_VERSION}" = "latest" ]; then \
-		VERSION="$( curl -sS https://releases.hashicorp.com/terraform/ | cat \
-			| grep -Eo '/[.0-9]+/' | grep -Eo '[.0-9]+' \
-			| sort -V | tail -1 )"; \
-	else \
-		VERSION="${TF_VERSION}"; \
-	fi \
-	&& curl -sS -L -O \
-		https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip \
-	&& unzip terraform_${VERSION}_linux_amd64.zip \
-	&& mv terraform /usr/bin/terraform \
-	&& chmod +x /usr/bin/terraform \
-# Get format-hcl script with dependencies
-# Taken from: https://github.com/ChristophShyper/docker-terragrunt
-	&& curl -sS -L \
-        https://raw.githubusercontent.com/ChristophShyper/docker-terragrunt/master/fmt/format-hcl \
-        -o /usr/bin/format-hcl \
-    && chmod +x /usr/bin/format-hcl \
-	&& curl -sS -L \
-        https://raw.githubusercontent.com/ChristophShyper/docker-terragrunt/master/fmt/fmt.sh \
-        -o /usr/bin/fmt.sh \
-    && chmod +x /usr/bin/fmt.sh \
-	&& curl -sS -L \
-        https://raw.githubusercontent.com/ChristophShyper/docker-terragrunt/master/fmt/terragrunt-fmt.sh \
-        -o /usr/bin/terragrunt-fmt.sh \
-    && chmod +x /usr/bin/terragrunt-fmt.sh
+# Instead of building from scratch pull my other docker image
+FROM christophshyper/docker-terragrunt:latest as builder
+RUN terraform --version
 
 # Use a clean tiny image to store artifacts in
 FROM alpine:3.11
