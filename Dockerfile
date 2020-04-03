@@ -74,6 +74,7 @@ RUN set -eux \
     && apk update --no-cache \
     && apk upgrade --no-cache \
 	&& apk add --no-cache git \
+	&& apk add --no-cache make \
 	&& apk add --no-cache openssh \
 	&& apk add --no-cache openssl \
 	&& apk add --no-cache zip \
