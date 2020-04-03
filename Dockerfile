@@ -72,6 +72,7 @@ RUN set -eux \
     && chmod +x /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh \
     && apk update --no-cache \
     && apk upgrade --no-cache \
+	&& apk add --no-cache bash \
 	&& apk add --no-cache git \
 	&& apk add --no-cache make \
 	&& apk add --no-cache openssh \
