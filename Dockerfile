@@ -9,7 +9,7 @@ FROM alpine:3.11
 ARG VCS_REF=abcdef1
 ARG BUILD_DATE=2020-04-01T00:00:00Z
 LABEL \
-    com.github.actions.author="Format HCL files" \
+    com.github.actions.author="Krzysztof Szyper <biotyk@mail.com>" \
     com.github.actions.color="white" \
     com.github.actions.description="Automatically format HCL files and commit fixed files back to current branch." \
     com.github.actions.icon="wind" \
@@ -35,10 +35,8 @@ RUN set -eux \
     && apk upgrade --no-cache \
 	&& apk add --no-cache bash \
 	&& apk add --no-cache git \
-	&& apk add --no-cache make \
 	&& apk add --no-cache openssh \
 	&& apk add --no-cache openssl \
-	&& apk add --no-cache zip \
     && mkdir -m 700 /root/.ssh \
     && touch -m 600 /root/.ssh/known_hosts \
     && ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts \
