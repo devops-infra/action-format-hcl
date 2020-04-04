@@ -1,16 +1,13 @@
 name: Build Docker image on each commit push by ChristophShyper
 
-on:
-    push:
-        branches:
-            - "**"
+on: push
 
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout repository
-                uses: actions/checkout@v1
+                uses: actions/checkout@v2
 
             -   name: Build Docker image
                 if: github.actor == 'ChristophShyper'
@@ -18,36 +15,3 @@ jobs:
                     DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
                     TERM: xterm-256color
                 run: make build
-
-            -   name: Create pull request - enhancement (conditional)
-                if: github.actor == 'ChristophShyper' && startsWith(github.ref, 'refs/heads/enhancement')
-                uses: repo-sync/pull-request@v2
-                with:
-                    github_token: ${{ secrets.GITHUB_TOKEN }}
-                    pr_label: "auto,enhancement"
-                    pr_body: "*Automated pull request*"
-                    pr_title: "${{ github.event.commits[0].message }}"
-                    pr_reviewer: ChristophShyper
-                    pr_assignee: ChristophShyper
-
-            -   name: Create pull request - documentation (conditional)
-                if: github.actor == 'ChristophShyper' && startsWith(github.ref, 'refs/heads/documentation')
-                uses: repo-sync/pull-request@v2
-                with:
-                    github_token: ${{ secrets.GITHUB_TOKEN }}
-                    pr_label: "auto,documentation"
-                    pr_body: "*Automated pull request*"
-                    pr_title: "${{ github.event.commits[0].message }}"
-                    pr_reviewer: ChristophShyper
-                    pr_assignee: ChristophShyper
-
-            -   name: Create pull request (conditional)
-                if: github.actor == 'ChristophShyper' && github.ref != 'refs/heads/master' && startsWith(github.ref, '!refs/heads/documentation') && startsWith(github.ref, '!refs/heads/enhancement')
-                uses: repo-sync/pull-request@v2
-                with:
-                    github_token: ${{ secrets.GITHUB_TOKEN }}
-                    pr_label: "auto"
-                    pr_body: "*Automated pull request*"
-                    pr_title: "${{ github.event.commits[0].message }}"
-                    pr_reviewer: "ChristophShyper"
-                    pr_assignee: "ChristophShyper"

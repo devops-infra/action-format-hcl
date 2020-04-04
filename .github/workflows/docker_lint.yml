@@ -1,16 +1,13 @@
 name: Lint Dockerfile on each push
 
-on:
-    push:
-        branches:
-            - "**"
+on: push
 
 jobs:
     docker_lint:
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout repository
-                uses: actions/checkout@v1
+                uses: actions/checkout@v2
 
             -   name: Docker Lint
                 uses: luke142367/Docker-Lint-Action@v1.0.0
