@@ -4,6 +4,7 @@ on: push
 
 jobs:
     lint:
+        name: Lint Dockerfile
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout repository
@@ -15,6 +16,7 @@ jobs:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     build:
+        name: Build Docker image
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout repository
@@ -28,14 +30,11 @@ jobs:
                 run: make build
 
     pull_requests:
+        name: Create Pull Request
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout repository
-                uses: actions/checkout@v2
-
-            -   name: Fetch all branches
-                run: |
-                    git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+                uses: actions/checkout@v1
 
             -   name: Create pull request - enhancement (conditional)
                 if: startsWith(github.ref, 'refs/heads/enhancement')
