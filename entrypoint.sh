@@ -4,7 +4,7 @@ set -e
 
 # GITHUB_TOKEN required
 if [[ -z "${GITHUB_TOKEN}" ]]; then
-  echo 'Missing input "github_token: ${{ secrets.GITHUB_TOKEN }}".'
+  echo 'Missing env "GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}".'
   exit 1
 fi
 
@@ -22,13 +22,14 @@ if [[ ${FILES_CHANGED} != "" ]]; then
 else
   MESSAGE="No files where formatted."
 fi
+echo " "
 echo "::set-output name=files_changed::${FILES_CHANGED}"
 echo ${MESSAGE}
 
 
 # Create auto commit
 if [[ ${FILES_CHANGED} != "" && ${INPUT_PUSH_CHANGES} == "true" ]]; then
-#  git remote set-url origin "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/"
+  git remote set-url origin "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/"
   git commit -am "[AUTO] ${MESSAGE}"
   git push
 fi
