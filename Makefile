@@ -34,8 +34,8 @@ build:
 	$(info $(TXT_GREEN)Build date:$(TXT_YELLOW)         $(BUILD_DATE)$(TXT_RESET))
 	$(info $(NL)$(TXT_GREEN)Building Docker image:$(TXT_YELLOW) $(DOCKER_NAME):$(VERSION)$(TXT_RESET))
 	@docker build \
-		--build-arg VCS_REF=$(GITHUB_SHORT_SHA) \
 		--build-arg BUILD_DATE=$(BUILD_DATE) \
+		--build-arg VCS_REF=$(GITHUB_SHORT_SHA) \
 		--build-arg VERSION=$(VERSION) \
 		--file=Dockerfile \
 		--tag=$(DOCKER_NAME):$(VERSION) .
