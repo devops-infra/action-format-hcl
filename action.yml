@@ -1,18 +1,17 @@
-# https://help.github.com/en/actions/building-actions/metadata-syntax-for-github-actions
 name: "Format HCL files and commit them"
 author: "Krzysztof Szyper <biotyk@mail.com>"
-description: "Automatically format HCL files and commit fixed files back to current branch."
-#inputs:
-#    inVar:
-#        description: "input var"
-#        required: false
-#        default: "aaa"
-#outputs:
-#    outVar:
-#        description: "output var"
+description: "Automatically format HCL files and commit fixed files back to the current branch."
+inputs:
+  push_changes:
+    description: "Whether changes should be pushed back to the current branch."
+    required: false
+    default: "false"
+outputs:
+  files_changed:
+    description: "List of formatted files."
 runs:
-    using: "docker"
-    image: "Dockerfile"
+  using: "docker"
+  image: "Dockerfile"
 branding:
-    color: "white"
-    icon: "wind"
+  color: "white"
+  icon: "wind"
