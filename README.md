@@ -1,3 +1,3 @@
 # action-format-hcl
 
-https://help.github.com/en/actions/reference/workflow-commands-for-github-actions
+GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch.

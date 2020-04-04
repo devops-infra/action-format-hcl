@@ -1,6 +1,6 @@
 name: "Format HCL files and commit them"
 author: "Krzysztof Szyper <biotyk@mail.com>"
-description: "Automatically format HCL files and commit fixed files back to the current branch."
+description: "GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch."
 inputs:
   push_changes:
     description: "Whether changes should be pushed back to the current branch."

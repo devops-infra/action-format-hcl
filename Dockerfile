@@ -11,11 +11,11 @@ ARG BUILD_DATE=2020-04-01T00:00:00Z
 LABEL \
     com.github.actions.author="Krzysztof Szyper <biotyk@mail.com>" \
     com.github.actions.color="white" \
-    com.github.actions.description="Automatically format HCL files and commit fixed files back to current branch." \
+    com.github.actions.description="GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch." \
     com.github.actions.icon="wind" \
     com.github.actions.name="Format HCL files and commit them" \
     org.label-schema.build-date="${BUILD_DATE}" \
-    org.label-schema.description="Docker image with GitHub action running format-hcl from https://github.com/ChristophShyper/docker-terragrunt." \
+    org.label-schema.description="GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch." \
 	org.label-schema.name="action-format-hcl" \
 	org.label-schema.schema-version="1.0"	\
     org.label-schema.url="https://github.com/ChristophShyper/action-format-hcl" \
