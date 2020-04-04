@@ -29,7 +29,9 @@ echo ${MESSAGE}
 
 # Create auto commit
 if [[ ${FILES_CHANGED} != "" && ${INPUT_PUSH_CHANGES} == "true" ]]; then
-  git remote set-url origin "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/"
+#  git remote set-url origin "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}/"
+  git config --global user.name '${GITHUB_ACTOR}'
+  git config --global user.email '${GITHUB_ACTOR}@users.noreply.github.com'
   git commit -am "[AUTO] ${MESSAGE}"
   git push
 fi
