@@ -3,15 +3,15 @@ author: "Krzysztof Szyper <biotyk@mail.com>"
 description: "GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch."
 inputs:
   fail_on_changes:
-    description: "Whether action should fail if any file is malformatted."
+    description: "Whether action should fail if any file is malformatted. Default false."
     required: false
     default: "false"
   push_changes:
-    description: "Whether changes should be pushed back to the current branch."
+    description: "Whether changes should be pushed back to the current branch. Default false."
     required: false
     default: "false"
   github_token:
-    description: "Personal Access Token for GitHub. If push_changes set to true."
+    description: "Personal Access Token for GitHub. If push_changes set to true. Default empty."
     required: false
     default: ""
 outputs:
