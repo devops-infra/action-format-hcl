@@ -33,6 +33,10 @@ jobs:
             -   name: Checkout repository
                 uses: actions/checkout@v2
 
+            -   name: Fetch all branches
+                run: |
+                    git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
+
             -   name: Create pull request - enhancement (conditional)
                 if: startsWith(github.ref, 'refs/heads/enhancement')
                 uses: repo-sync/pull-request@v2
