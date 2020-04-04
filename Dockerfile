@@ -35,11 +35,6 @@ RUN set -eux \
     && apk update --no-cache \
     && apk upgrade --no-cache \
 	&& apk add --no-cache git \
-#	&& apk add --no-cache openssh \
-#	&& apk add --no-cache openssl \
-#    && mkdir -m 700 /root/.ssh \
-#    && touch -m 600 /root/.ssh/known_hosts \
-#    && ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts \
     && rm -rf /var/cache/* \
     && rm -rf /root/.cache/* \
     && terraform --version
