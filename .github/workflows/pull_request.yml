@@ -6,7 +6,7 @@ on:
             - "**"
 
 jobs:
-    push:
+    pull_request:
         runs-on: ubuntu-latest
         steps:
             -   name: Create pull request - enhancement (conditional)

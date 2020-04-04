@@ -6,7 +6,7 @@ on:
             - "**"
 
 jobs:
-    push:
+    docker_lint:
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout repository
