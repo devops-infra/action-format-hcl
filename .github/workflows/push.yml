@@ -12,10 +12,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-#      - name: Docker Lint
-#        uses: luke142367/Docker-Lint-Action@v1.0.0
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker Lint
+        uses: luke142367/Docker-Lint-Action@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image (conditional)
         if: github.actor == 'ChristophShyper' && github.ref == 'refs/heads/master'
@@ -47,17 +47,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           pr_label: "auto-pull-request,documentation"
-          pr_body: "*Automated pull request*"
-          pr_title: "${{ github.event.commits[0].message }}"
-          pr_reviewer: ChristophShyper
-          pr_assignee: ChristophShyper
-
-      - name: Create pull request - version-update (conditional)
-        if: github.actor == 'ChristophShyper' && startsWith(github.ref, 'refs/heads/version-update')
-        uses: repo-sync/pull-request@v2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          pr_label: "auto-pull-request,version-update"
           pr_body: "*Automated pull request*"
           pr_title: "${{ github.event.commits[0].message }}"
           pr_reviewer: ChristophShyper

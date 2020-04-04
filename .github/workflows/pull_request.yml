@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  build:
+  pull_request:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
