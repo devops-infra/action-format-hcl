@@ -3,7 +3,8 @@ name: On each commit push
 on: push
 
 jobs:
-    push:
+    lint:
+        name: Lint Dockerfile
         runs-on: ubuntu-latest
         steps:
             -   name: Checkout repository
@@ -14,12 +15,26 @@ jobs:
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+    build:
+        name: Build Docker image
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v2
+
             -   name: Build Docker image
                 if: github.actor == 'ChristophShyper'
                 env:
                     DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
                     TERM: xterm-256color
                 run: make build
+
+    pull_requests:
+        name: Create Pull Request
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v1
 
             -   name: Create pull request - enhancement (conditional)
                 if: startsWith(github.ref, 'refs/heads/enhancement')
