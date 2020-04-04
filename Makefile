@@ -42,7 +42,7 @@ build:
 ifeq ($(CURRENT_BRANCH),$(RELEASE_BRANCH))
 	$(info $(NL)$(TXT_GREEN) == STARTING DEPLOYMENT == $(TXT_RESET))
 	$(info $(NL)$(TXT_GREEN)Logging to DockerHub$(TXT_RESET))
-    @echo $(DOCKER_TOKEN) | docker login -u $(DOCKER_USER_ID) --password-stdin
+	@echo $(DOCKER_TOKEN) | docker login -u $(DOCKER_USER_ID) --password-stdin
 	$(info $(NL)$(TXT_GREEN)Pushing image:$(TXT_YELLOW) $(DOCKER_NAME):$(VERSION)$(TXT_RESET))
 	@docker tag $(DOCKER_NAME):$(VERSION) $(DOCKER_NAME):latest
 	@docker push $(DOCKER_NAME):$(VERSION)
