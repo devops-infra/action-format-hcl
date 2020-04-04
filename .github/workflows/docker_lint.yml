@@ -1,0 +1,18 @@
+name: Lint Dockerfile on each push
+
+on:
+    push:
+        branches:
+            - "**"
+
+jobs:
+    push:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout repository
+                uses: actions/checkout@v1
+
+            -   name: Docker Lint
+                uses: luke142367/Docker-Lint-Action@v1.0.0
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
