@@ -1,11 +1,11 @@
 # Instead of building from scratch pull my other docker image
 FROM christophshyper/docker-terragrunt:latest as builder
-RUN terraform --version
 
 # Use a clean tiny image to store artifacts in
 FROM alpine:3.11
 
 # For http://label-schema.org/rc1/#build-time-labels
+ARG VERSION=v0.0
 ARG VCS_REF=abcdef1
 ARG BUILD_DATE=2020-04-01T00:00:00Z
 LABEL \
@@ -22,7 +22,7 @@ LABEL \
 	org.label-schema.vcs-ref="${VCS_REF}" \
     org.label-schema.vcs-url="https://github.com/ChristophShyper/action-format-hcl" \
     org.label-schema.vendor="Krzysztof Szyper <biotyk@mail.com>" \
-    org.label-schema.version="0.0" \
+    org.label-schema.version="${VERSION}" \
     maintainer="Krzysztof Szyper <biotyk@mail.com>" \
     repository="https://github.com/ChristophShyper/action-format-hcl" \
     alpine="3.11"
@@ -41,7 +41,8 @@ RUN set -eux \
 #    && touch -m 600 /root/.ssh/known_hosts \
 #    && ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts \
     && rm -rf /var/cache/* \
-    && rm -rf /root/.cache/*
+    && rm -rf /root/.cache/* \
+    && terraform --version
 
 WORKDIR /github/workspace
 ENTRYPOINT entrypoint.sh
