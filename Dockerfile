@@ -34,10 +34,11 @@ RUN set -eux \
     && chmod +x /usr/bin/entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh \
     && apk update --no-cache \
     && apk upgrade --no-cache \
+    && apk add --no-cache bash \
 	&& apk add --no-cache git \
     && rm -rf /var/cache/* \
-    && rm -rf /root/.cache/* \
-    && terraform --version
+    && rm -rf /root/.cache/*
 
+CMD terraform --version
 WORKDIR /github/workspace
 ENTRYPOINT entrypoint.sh
