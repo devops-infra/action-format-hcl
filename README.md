@@ -8,6 +8,7 @@ So it's main use will be everywhere where [Terraform](https://github.com/hashico
 
 Main action is using combination of my wrapper for [cytopia](https://github.com/cytopia)'s [docker-terragrunt-fmt](https://github.com/cytopia/docker-terragrunt-fmt/tree/3f8964bea0db043a05d4a8d622f94a07f109b5a7).
 
+
 ## Badge swag
 [
 ![GitHub](https://img.shields.io/badge/github-ChristophShyper%2Faction--format--hcl-brightgreen.svg?style=flat-square&logo=github)
@@ -23,6 +24,7 @@ Main action is using combination of my wrapper for [cytopia](https://github.com/
 ![Docker version](https://img.shields.io/docker/v/christophshyper/action-format-hcl?color=blue&label=Version&logo=docker&style=flat-square)
 ](https://hub.docker.com/r/christophshyper/action-format-hcl "shields.io")
 
+
 ## Usage
 
 Input Variable | Required | Default |Description
@@ -32,6 +34,7 @@ github_token | If `push_changes` set to `true` | `""` | Personal Access Token fo
 push_changes | No | `false` | Boolean value. Whether changes should be pushed back to the current branch.
 
 If `push_changes` is set to `true` then `fail_on_changes` will be treated as `false`.
+
 
 ## Examples
 
