@@ -16,10 +16,10 @@ LABEL \
     com.github.actions.name="Format HCL files and commit them" \
     org.label-schema.build-date="${BUILD_DATE}" \
     org.label-schema.description="GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch." \
-	org.label-schema.name="action-format-hcl" \
-	org.label-schema.schema-version="1.0"	\
+	  org.label-schema.name="action-format-hcl" \
+	  org.label-schema.schema-version="1.0"	\
     org.label-schema.url="https://github.com/ChristophShyper/action-format-hcl" \
-	org.label-schema.vcs-ref="${VCS_REF}" \
+	  org.label-schema.vcs-ref="${VCS_REF}" \
     org.label-schema.vcs-url="https://github.com/ChristophShyper/action-format-hcl" \
     org.label-schema.vendor="Krzysztof Szyper <biotyk@mail.com>" \
     org.label-schema.version="${VERSION}" \
@@ -34,7 +34,7 @@ RUN set -eux \
     && chmod +x /usr/bin/entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh \
     && apk update --no-cache \
     && apk upgrade --no-cache \
-	&& apk add --no-cache git \
+	  && apk add --no-cache git \
     && rm -rf /var/cache/* \
     && rm -rf /root/.cache/* \
     && terraform --version
