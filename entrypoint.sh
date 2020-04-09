@@ -21,9 +21,12 @@ BRANCH=${GITHUB_REF/refs\/heads\//}
 
 # Info about formatted files
 if [[ ! -z ${FILES_CHANGED} ]]; then
-  MESSAGE="Formatted HCL files: ${FILES_CHANGED}"
+  echo "[INFO] Formatted HCL files:"
+  for FILE in ${FILES_CHANGED}; do
+    echo "- ${FILE}"
+  done
 else
-  MESSAGE="No files needed formatting."
+  echo "[INFO] No files needed formatting."
 fi
 
 # Create auto commit
@@ -37,7 +40,6 @@ if [[ ${INPUT_PUSH_CHANGES} == "true" && ! -z ${FILES_CHANGED} ]]; then
   git push ${REPO_URL} HEAD:${BRANCH}
   echo " "
   echo "::set-output name=files_changed::${FILES_CHANGED}"
-  echo "::warning ${MESSAGE}"
   echo " "
   exit 0
 fi
@@ -46,15 +48,12 @@ fi
 if [[ ${INPUT_FAIL_ON_CHANGES} == "true" && ! -z ${FILES_CHANGED} ]]; then
   echo " "
   echo "::set-output name=files_changed::${FILES_CHANGED}"
-  echo "::error ${MESSAGE}"
   echo " "
   exit 1
 else
   # Pass in other cases
   echo " "
   echo "::set-output name=files_changed::${FILES_CHANGED}"
-  echo "::warning ${MESSAGE}"
-  echo ${MESSAGE}
   echo " "
   exit 0
 fi

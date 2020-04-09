@@ -18,7 +18,7 @@ LABEL \
   org.label-schema.description="GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch." \
   org.label-schema.name="action-format-hcl" \
   org.label-schema.schema-version="1.0"	\
-  org.label-schema.url="https://github.com/ChristophShyper/action-format-hcl" \
+  org.label-schema.url="https://christophshyper.github.io/" \
   org.label-schema.vcs-ref="${VCS_REF}" \
   org.label-schema.vcs-url="https://github.com/ChristophShyper/action-format-hcl" \
   org.label-schema.vendor="Krzysztof Szyper <biotyk@mail.com>" \
@@ -29,11 +29,11 @@ LABEL \
 
 # Copy all needed files
 COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh /usr/bin/
-COPY entrypoint.sh /usr/bin/
+COPY entrypoint.sh /
 
 # Install needed packages
 RUN set -eux \
-  && chmod +x /usr/bin/entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh \
+  && chmod +x /entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh \
   && apk update --no-cache \
   && apk upgrade --no-cache \
   && apk add --no-cache bash \
@@ -44,4 +44,4 @@ RUN set -eux \
 # Finish up
 CMD terraform --version
 WORKDIR /github/workspace
-ENTRYPOINT entrypoint.sh
+ENTRYPOINT /entrypoint.sh
