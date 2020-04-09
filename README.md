@@ -42,9 +42,7 @@ Action can fail if malformatted files will be found and no changes to repository
 ```yaml
 name: Check HCL
 on:
-  push:
-    branches:
-      - "**"
+  push
 jobs:
   format-hcl:
     runs-on: ubuntu-latest
@@ -61,9 +59,7 @@ Action can automatically format all HCL files and commit updated files back to t
 ```yaml
 name: Format HCL
 on:
-  push:
-    branches:
-      - "**"
+  push
 jobs:
   format-hcl:
     runs-on: ubuntu-latest
