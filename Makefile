@@ -1,3 +1,5 @@
+.PHONY: help build push
+phony: help
 
 # Release tag for the action
 VERSION := v0.1
@@ -26,8 +28,11 @@ TXT_GREEN := $(shell tput setaf 2)
 TXT_YELLOW := $(shell tput setaf 3)
 TXT_RESET := $(shell tput sgr0)
 
-# Buid docker image
-build:
+help: ## Display help prompt
+	$(info Available options:)
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "$(TXT_YELLOW)%-25s $(TXT_RESET) %s\n", $$1, $$2}'
+
+build: ## Buid docker image
 	$(info $(NL)$(TXT_GREEN) == STARTING BUILD ==$(TXT_RESET))
 	$(info $(TXT_GREEN)Release tag:$(TXT_YELLOW)        $(VERSION)$(TXT_RESET))
 	$(info $(TXT_GREEN)Current branch:$(TXT_YELLOW)     $(CURRENT_BRANCH)$(TXT_RESET))
@@ -40,8 +45,8 @@ build:
 		--build-arg VERSION=$(VERSION) \
 		--file=Dockerfile \
 		--tag=$(DOCKER_NAME):$(VERSION) .
-# Push to DockerHub if it's master branch
-ifeq ($(CURRENT_BRANCH),$(RELEASE_BRANCH))
+
+push: ## Push to DockerHub
 	$(info $(NL)$(TXT_GREEN) == STARTING DEPLOYMENT == $(TXT_RESET))
 	$(info $(NL)$(TXT_GREEN)Logging to DockerHub$(TXT_RESET))
 	@echo $(DOCKER_TOKEN) | docker login -u $(DOCKER_USER_ID) --password-stdin
@@ -49,4 +54,3 @@ ifeq ($(CURRENT_BRANCH),$(RELEASE_BRANCH))
 	@docker tag $(DOCKER_NAME):$(VERSION) $(DOCKER_NAME):latest
 	@docker push $(DOCKER_NAME):$(VERSION)
 	@docker push $(DOCKER_NAME):latest
-endif
