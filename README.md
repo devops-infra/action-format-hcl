@@ -29,7 +29,7 @@ Main action is using combination of my wrapper for [cytopia](https://github.com/
 
 Input Variable | Required | Default |Description
 :--- | :---: | :---: | :---
-fail_on_changes | No | `false` | Boolean value. Wheter action should fail if any mailformatted files are found.
+fail_on_changes | No | `false` | Boolean value. Whether action should fail if any mailformatted files are found.
 github_token | If `push_changes` set to `true` | `""` | Personal Access Token for GitHub. Set to `${{ secrets.GITHUB_TOKEN }}`
 push_changes | No | `false` | Boolean value. Whether changes should be pushed back to the current branch.
 
