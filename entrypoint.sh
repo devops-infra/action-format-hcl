@@ -1,59 +1,26 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -e
 
-# github_token required
-if [[ -z "${INPUT_GITHUB_TOKEN}" && ${INPUT_PUSH_CHANGES} == "true" ]]; then
-  MESSAGE='Missing variable "github_token: ${{ secrets.GITHUB_TOKEN }}".'
-  echo ${MESSAGE}
-  echo "::error ${MESSAGE}"
-  exit 1
-fi
+# Return code
+RET_CODE=0
 
 # Run main action
-format-hcl
+/usr/bin/format-hcl
 
-# List of changed files
-FILES_CHANGED=$(git diff --name-only)
+# TODO: handle parameters for format-hcl script
+# TODO: use it for listing updated files
 
-# Get the name of the current branch
-BRANCH=${GITHUB_REF/refs\/heads\//}
-
-# Info about formatted files
-if [[ ! -z ${FILES_CHANGED} ]]; then
-  echo "[INFO] Formatted HCL files:"
-  for FILE in ${FILES_CHANGED}; do
-    echo "- ${FILE}"
-  done
-else
-  echo "[INFO] No files needed formatting."
-fi
-
-# Create auto commit
-if [[ ${INPUT_PUSH_CHANGES} == "true" && ! -z ${FILES_CHANGED} ]]; then
-  # Create auto commit
+# Finish
+if [[ ${RET_CODE} != "0" ]]; then
   echo " "
-  REPO_URL="https://${GITHUB_ACTOR}:${INPUT_GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-  git config --global user.name ${GITHUB_ACTOR}
-  git config --global user.email ${GITHUB_ACTOR}@users.noreply.github.com
-  git commit -am "[AUTO] ${MESSAGE}"
-  git push ${REPO_URL} HEAD:${BRANCH}
-  echo " "
-  echo "::set-output name=files_changed::${FILES_CHANGED}"
-  echo " "
-  exit 0
-fi
-
-# Fail if needed
-if [[ ${INPUT_FAIL_ON_CHANGES} == "true" && ! -z ${FILES_CHANGED} ]]; then
-  echo " "
-  echo "::set-output name=files_changed::${FILES_CHANGED}"
+  echo "[ERROR] Check log for errors."
   echo " "
   exit 1
 else
   # Pass in other cases
   echo " "
-  echo "::set-output name=files_changed::${FILES_CHANGED}"
+  echo "[INFO] No errors found."
   echo " "
   exit 0
 fi

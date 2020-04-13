@@ -1,25 +1,17 @@
-name: "Format HCL files and commit them"
+name: "Format HCL files"
 author: "Krzysztof Szyper <biotyk@mail.com>"
-description: "GitHub Action automatically formatting all HCL files and committing fixed files back to the current branch."
+description: "GitHub Action automatically formatting all HCL and TF files."
 inputs:
   fail_on_changes:
-    description: "Whether action should fail if any file is malformatted. Default false."
+    description: "Boolean value. Whether action should fail if any malformatted files are found."
     required: false
     default: "false"
-  push_changes:
-    description: "Whether changes should be pushed back to the current branch. Default false."
-    required: false
-    default: "false"
-  github_token:
-    description: "Personal Access Token for GitHub. If push_changes set to true. Default empty."
-    required: false
-    default: ""
 outputs:
   files_changed:
     description: "List of formatted files."
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://christophshyper/action-format-hcl:latest"
 branding:
-  color: "white"
-  icon: "wind"
+  color: "purple"
+  icon: "upload-cloud"

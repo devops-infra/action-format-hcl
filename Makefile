@@ -19,20 +19,21 @@ BUILD_DATE := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 # Some cosmetics
 SHELL := bash
-define NL
-
-
-endef
 TXT_RED := $(shell tput setaf 1)
 TXT_GREEN := $(shell tput setaf 2)
 TXT_YELLOW := $(shell tput setaf 3)
 TXT_RESET := $(shell tput sgr0)
+define NL
 
+
+endef
+
+# Main actions
 help: ## Display help prompt
 	$(info Available options:)
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "$(TXT_YELLOW)%-25s $(TXT_RESET) %s\n", $$1, $$2}'
 
-build: ## Buid docker image
+build: ## Build Docker image
 	$(info $(NL)$(TXT_GREEN) == STARTING BUILD ==$(TXT_RESET))
 	$(info $(TXT_GREEN)Release tag:$(TXT_YELLOW)        $(VERSION)$(TXT_RESET))
 	$(info $(TXT_GREEN)Current branch:$(TXT_YELLOW)     $(CURRENT_BRANCH)$(TXT_RESET))
@@ -48,9 +49,9 @@ build: ## Buid docker image
 
 push: ## Push to DockerHub
 	$(info $(NL)$(TXT_GREEN) == STARTING DEPLOYMENT == $(TXT_RESET))
-	$(info $(NL)$(TXT_GREEN)Logging to DockerHub$(TXT_RESET))
+	$(info $(NL)$(TXT_GREEN)Logging-in to DockerHub$(TXT_RESET))
 	@echo $(DOCKER_TOKEN) | docker login -u $(DOCKER_USER_ID) --password-stdin
-	$(info $(NL)$(TXT_GREEN)Pushing image:$(TXT_YELLOW) $(DOCKER_NAME):$(VERSION)$(TXT_RESET))
+	$(info $(NL)$(TXT_GREEN)Pushing Docker image:$(TXT_YELLOW) $(DOCKER_NAME):$(VERSION)$(TXT_RESET))
 	@docker tag $(DOCKER_NAME):$(VERSION) $(DOCKER_NAME):latest
 	@docker push $(DOCKER_NAME):$(VERSION)
 	@docker push $(DOCKER_NAME):latest
