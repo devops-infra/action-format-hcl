@@ -7,9 +7,26 @@ RET_CODE=0
 
 # Run main action
 /usr/bin/format-hcl
+RET_CODE=$?
 
 # TODO: handle parameters for format-hcl script
-# TODO: use it for listing updated files
+
+# List of changed files
+FILES_CHANGED=$(git diff --staged --name-status)
+
+# Info about changed files
+if [[ ! -z ${FILES_CHANGED} ]]; then
+  echo " "
+  echo "[INFO] Updated files:"
+  for FILE in ${FILES_CHANGED}; do
+    echo "${FILE}"
+  done
+  echo " "
+else
+  echo " "
+  echo "[INFO] No files updated."
+  echo " "
+fi
 
 # Finish
 if [[ ${RET_CODE} != "0" ]]; then
