@@ -9,8 +9,8 @@ FROM alpine:3.11
 # And for https://help.github.com/en/actions/building-actions/metadata-syntax-for-github-actions
 ARG NAME="Format HCL files"
 ARG DESCRIPTION="GitHub Action automatically formatting all HCL and TF files."
-ARG REPO_URL="https://github.com/ChristophShyper/action-format-hcl"
-ARG AUTHOR="Krzysztof Szyper <biotyk@mail.com>"
+ARG REPO_URL="https://github.com/devops-infra/action-format-hcl"
+ARG AUTHOR="Krzysztof Szyper / ChristophShyper <biotyk@mail.com>"
 ARG HOMEPAGE="https://christophshyper.github.io/"
 ARG BUILD_DATE=2020-04-01T00:00:00Z
 ARG VCS_REF=abcdef1
@@ -20,7 +20,7 @@ LABEL \
   com.github.actions.author="${AUTHOR}" \
   com.github.actions.description="${DESCRIPTION}" \
   com.github.actions.color="purple" \
-  com.github.actions.icon="codepen" \
+  com.github.actions.icon="upload-cloud" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.name="${NAME}" \
   org.label-schema.description="${DESCRIPTION}" \
