@@ -15,29 +15,21 @@ RET_CODE=$?
 FILES_CHANGED=$(git diff --staged --name-status)
 
 # Info about changed files
-if [[ ! -z ${FILES_CHANGED} ]]; then
-  echo " "
-  echo "[INFO] Updated files:"
+if [[ -n ${FILES_CHANGED} ]]; then
+  echo -e "\n[INFO] Updated files:"
   for FILE in ${FILES_CHANGED}; do
     echo "${FILE}"
   done
-  echo " "
 else
-  echo " "
-  echo "[INFO] No files updated."
-  echo " "
+  echo -e "\n[INFO] No files updated."
 fi
 
 # Finish
 if [[ ${RET_CODE} != "0" ]]; then
-  echo " "
-  echo "[ERROR] Check log for errors."
-  echo " "
+  echo -e "\n[ERROR] Check log for errors."
   exit 1
 else
   # Pass in other cases
-  echo " "
-  echo "[INFO] No errors found."
-  echo " "
+  echo -e "\n[INFO] No errors found."
   exit 0
 fi

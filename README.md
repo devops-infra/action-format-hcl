@@ -4,27 +4,26 @@ GitHub Action automatically formatting all [HCL](https://github.com/hashicorp/hc
 
 Dockerized as [christophshyper/action-format-hcl](https://hub.docker.com/repository/docker/christophshyper/action-format-hcl). 
 
-Container is a stripped down image of my other creation - [ChristophShyper/docker-terragrunt](https://github.com/ChristophShyper/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
-
-So it's main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) or [Terragrunt](https://github.com/gruntwork-io/terragrunt) is used.
-
-Main action is using combination of my wrapper for [cytopia](https://github.com/cytopia)'s [docker-terragrunt-fmt](https://github.com/cytopia/docker-terragrunt-fmt).
+Features:
+* Container is a stripped down image of my other creation - [ChristophShyper/docker-terragrunt](https://github.com/ChristophShyper/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
+* Main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) or [Terragrunt](https://github.com/gruntwork-io/terragrunt) is used.
+* Using combination of my wrapper for [cytopia](https://github.com/cytopia)'s [docker-terragrunt-fmt](https://github.com/cytopia/docker-terragrunt-fmt).
 
 
 ## Badge swag
 [
-![GitHub](https://img.shields.io/badge/github-ChristophShyper%2Faction--format--hcl-brightgreen.svg?style=flat-square&logo=github)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/christophshyper/action-format-hcl?color=brightgreen&label=Code%20size&style=flat-square&logo=github)
-![GitHub last commit](https://img.shields.io/github/last-commit/christophshyper/action-format-hcl?color=brightgreen&label=Last%20commit&style=flat-square&logo=github)
-](https://github.com/christophshyper/action-format-hcl "shields.io")
-[![Push to master](https://img.shields.io/github/workflow/status/christophshyper/action-format-hcl/Push%20to%20master?color=brightgreen&label=Master%20branch&logo=github&style=flat-square)
-](https://github.com/ChristophShyper/action-format-hcl/actions?query=workflow%3A%22Push+to+master%22)
-[![Push to other](https://img.shields.io/github/workflow/status/christophshyper/action-format-hcl/Push%20to%20other?color=brightgreen&label=Pull%20requests&logo=github&style=flat-square)
-](https://github.com/ChristophShyper/action-format-hcl/actions?query=workflow%3A%22Push+to+other%22)
+![GitHub](https://img.shields.io/badge/github-devops--infra%2Faction--format--hcl-brightgreen.svg?style=flat-square&logo=github)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/devops-infra/action-format-hcl?color=brightgreen&label=Code%20size&style=flat-square&logo=github)
+![GitHub last commit](https://img.shields.io/github/last-commit/devops-infra/action-format-hcl?color=brightgreen&label=Last%20commit&style=flat-square&logo=github)
+](https://github.com/devops-infra/action-format-hcl "shields.io")
+[![Push to master](https://img.shields.io/github/workflow/status/devops-infra/action-format-hcl/Push%20to%20master?color=brightgreen&label=Master%20branch&logo=github&style=flat-square)
+](https://github.com/devops-infra/action-format-hcl/actions?query=workflow%3A%22Push+to+master%22)
+[![Push to other](https://img.shields.io/github/workflow/status/devops-infra/action-format-hcl/Push%20to%20other?color=brightgreen&label=Pull%20requests&logo=github&style=flat-square)
+](https://github.com/devops-infra/action-format-hcl/actions?query=workflow%3A%22Push+to+other%22)
 <br>
 [
 ![DockerHub](https://img.shields.io/badge/docker-christophshyper%2Faction--format--hcl-blue.svg?style=flat-square&logo=docker)
-![Dockerfile size](https://img.shields.io/github/size/christophshyper/action-format-hcl/Dockerfile?label=Dockerfile%20size&style=flat-square&logo=docker)
+![Dockerfile size](https://img.shields.io/github/size/devops-infra/action-format-hcl/Dockerfile?label=Dockerfile%20size&style=flat-square&logo=docker)
 ![Image size](https://img.shields.io/docker/image-size/christophshyper/action-format-hcl/latest?label=Image%20size&style=flat-square&logo=docker)
 ![Docker Pulls](https://img.shields.io/docker/pulls/christophshyper/action-format-hcl?color=blue&label=Pulls&logo=docker&style=flat-square)
 ![Docker version](https://img.shields.io/docker/v/christophshyper/action-format-hcl?color=blue&label=Version&logo=docker&style=flat-square)
@@ -35,7 +34,7 @@ Main action is using combination of my wrapper for [cytopia](https://github.com/
 
 ```yaml
     - name: Fail on malformatted files
-      uses: ChristophShyper/action-format-hcl@master
+      uses: devops-infra/action-format-hcl@master
       with:
         fail_on_changes: true
 ```
@@ -59,12 +58,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Fail on malformatted files
-      uses: docker://christophshyper/action-format-hcl:latest
+      uses: devops-infra/action-format-hcl@master
       with:
         fail_on_changes: true
 ```
 
-Action can automatically format all HCL files and commit updated files back to the repository using my other action [action-commit-push](https://github.com/christophshyper/action-commit-push).
+Action can automatically format all HCL files and commit updated files back to the repository using my other action [action-commit-push](https://github.com/devops-infra/action-commit-push).
 ```yaml
 name: Format HCL
 on:
@@ -76,9 +75,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Format HCL files
-      uses: docker://christophshyper/action-format-hcl:latest
+      uses: devops-infra/action-format-hcl@master
     - name: Commit changes to repo
-      uses: docker://christophshyper/action-commit-push:latest
+      uses: devops-infra/action-commit-push@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit_prefix: "[AUTO-FORMAT-HCL]"
