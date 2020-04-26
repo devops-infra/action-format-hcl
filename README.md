@@ -1,4 +1,4 @@
-# Format HCL files Action
+# GitHub Action for formating HCL files
 
 **GitHub Action automatically formatting all [HCL](https://github.com/hashicorp/hcl) and [TF](https://www.terraform.io/docs/configuration/index.html) files (.hcl, .tf, .tfvars).**
 
