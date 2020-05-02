@@ -2,10 +2,10 @@
 
 **GitHub Action automatically formatting all [HCL](https://github.com/hashicorp/hcl) and [TF](https://www.terraform.io/docs/configuration/index.html) files (.hcl, .tf, .tfvars).**
 
-Dockerized as [christophshyper/action-format-hcl](https://hub.docker.com/repository/docker/christophshyper/action-format-hcl). 
+Dockerized as [devopsinfra/action-format-hcl](https://hub.docker.com/repository/docker/devopsinfra/action-format-hcl). 
 
 Features:
-* Container is a stripped down image of my other creation - [ChristophShyper/docker-terragrunt](https://github.com/ChristophShyper/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
+* Container is a stripped down image of my other creation - [devopsinfra/docker-terragrunt](https://github.com/devopsinfra/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
 * Main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) or [Terragrunt](https://github.com/gruntwork-io/terragrunt) is used.
 * Using combination of my wrapper for [cytopia](https://github.com/cytopia)'s [docker-terragrunt-fmt](https://github.com/cytopia/docker-terragrunt-fmt).
 
@@ -22,11 +22,11 @@ Features:
 ](https://github.com/devops-infra/action-format-hcl "shields.io")
 <br>
 [
-![DockerHub](https://img.shields.io/badge/DockerHub-christophshyper%2Faction--format--hcl-blue.svg?style=plastic&logo=docker)
-![Docker version](https://img.shields.io/docker/v/christophshyper/action-format-hcl?color=blue&label=Version&logo=docker&style=plastic)
-![Image size](https://img.shields.io/docker/image-size/christophshyper/action-format-hcl/latest?label=Image%20size&style=plastic&logo=docker)
-![Docker Pulls](https://img.shields.io/docker/pulls/christophshyper/action-format-hcl?color=blue&label=Pulls&logo=docker&style=plastic)
-](https://hub.docker.com/r/christophshyper/action-format-hcl "shields.io")
+![DockerHub](https://img.shields.io/badge/DockerHub-devopsinfra%2Faction--format--hcl-blue.svg?style=plastic&logo=docker)
+![Docker version](https://img.shields.io/docker/v/devopsinfra/action-format-hcl?color=blue&label=Version&logo=docker&style=plastic)
+![Image size](https://img.shields.io/docker/image-size/devopsinfra/action-format-hcl/latest?label=Image%20size&style=plastic&logo=docker)
+![Docker Pulls](https://img.shields.io/docker/pulls/devopsinfra/action-format-hcl?color=blue&label=Pulls&logo=docker&style=plastic)
+](https://hub.docker.com/r/devopsinfra/action-format-hcl "shields.io")
 
 
 ## Reference

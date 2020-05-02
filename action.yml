@@ -11,7 +11,7 @@ outputs:
     description: List of formatted files
 runs:
   using: docker
-  image: docker://christophshyper/action-format-hcl:latest
+  image: docker://devopsinfra/action-format-hcl:latest
 branding:
   color: purple
   icon: upload-cloud
