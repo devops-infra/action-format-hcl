@@ -5,11 +5,48 @@ set -e
 # Return code
 RET_CODE=0
 
-# Run main action
-/usr/bin/format-hcl
-RET_CODE=$?
+# Print input variables
+echo "Inputs:"
+echo "  list: ${INPUT_LIST}"
+echo "  write: ${INPUT_WRITE}"
+echo "  ignore: ${INPUT_IGNORE}"
+echo "  diff: ${INPUT_DIFF}"
+echo "  check: ${INPUT_CHECK}"
+echo "  recursive: ${INPUT_RECURSIVE}"
+echo "  dir: ${INPUT_DIR}"
 
-# TODO: handle parameters for format-hcl script
+# Remap input variables as parameters for format-hcl
+LIST="-list=${INPUT_LIST}"
+WRITE="-write=${INPUT_WRITE}"
+IGNORE="-write=${INPUT_IGNORE}"
+
+if [[ "${INPUT_DIFF}" == "true" ]]; then
+  DIFF="-diff"
+else
+  DIFF=""
+fi
+
+if [[ "${INPUT_CHECK}" == "true" ]]; then
+  CHECK="-check"
+else
+  CHECK=""
+fi
+
+if [[ "${INPUT_RECURSIVE}" == "true" ]]; then
+  RECURSIVE="-recursive"
+else
+  RECURSIVE=""
+fi
+
+if [[ -n "${INPUT_DIR}" ]]; then
+  DIR="${INPUT_DIR}"
+else
+  DIR=""
+fi
+
+# Run main action
+/usr/bin/format-hcl "${LIST} ${WRITE} ${IGNORE} ${DIFF} ${CHECK} ${RECURSIVE} ${DIR}"
+RET_CODE=$?
 
 # List of changed files
 FILES_CHANGED=$(git diff --staged --name-status)

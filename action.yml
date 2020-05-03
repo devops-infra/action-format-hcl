@@ -2,10 +2,34 @@ name: GitHub Action for formating HCL files
 author: Krzysztof Szyper / ChristophShyper / biotyk@mail.com
 description: GitHub Action automatically formatting all HCL and TF files
 inputs:
-  fail_on_changes:
-    description: Whether action should fail if any malformatted files are found
+  list:
+    description: List files containing formatting inconsistencies.
     required: false
     default: "false"
+  write:
+    description: Overwrite input files. Disabled if using check.
+    required: false
+    default: "true"
+  ignore:§
+    description: Comma separated list of paths to ignore. Only for .hcl files.
+    required: false
+    default: ""
+  diff:
+    description: Display diffs of formatting changes.
+    required: false
+    default: "false"
+  check:
+    description: Check if files are malformatted.
+    required: false
+    default: "false"
+  recursive:
+    description: Also process files in subdirectories.
+    required: false
+    default: "true"
+  dir:
+    description: Path to be checked. Current dir as default.
+    required: false
+    default: ""
 outputs:
   files_changed:
     description: List of formatted files
