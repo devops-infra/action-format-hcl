@@ -35,12 +35,24 @@ Features:
     - name: Fail on malformatted files
       uses: devops-infra/action-format-hcl@master
       with:
-        fail_on_changes: true
+        list: false
+        write: true
+        ignore: "config"
+        diff: false
+        check: false
+        recursive: true
+        dir: "modules"
 ```
 
 Input Variable | Required | Default |Description
 :--- | :---: | :---: | :---
-fail_on_changes | No | `false` | Boolean value. Whether action should fail if any mailformatted files are found.
+list | No | `false` | List files containing formatting inconsistencies.
+write | No | `true` | Overwrite input files. Disabled if using check.
+ignore | No | `""` | Comma separated list of paths to ignore. Only for .hcl files.
+diff | No | `false` | Display diffs of formatting changes.
+check | No | `false` | Check if files are malformatted.
+recursive | No | `true` | Also process files in subdirectories.
+dir | No | `""` | Path to be checked. Current dir as default.
 
 
 ## Examples
@@ -59,7 +71,7 @@ jobs:
     - name: Fail on malformatted files
       uses: devops-infra/action-format-hcl@master
       with:
-        fail_on_changes: true
+        check: true
 ```
 
 Action can automatically format all HCL files and commit updated files back to the repository using my other action [action-commit-push](https://github.com/devops-infra/action-commit-push).
