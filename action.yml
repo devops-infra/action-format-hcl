@@ -10,7 +10,7 @@ inputs:
     description: Overwrite input files. Disabled if using check.
     required: false
     default: "true"
-  ignore:§
+  ignore:
     description: Comma separated list of paths to ignore. Only for .hcl files.
     required: false
     default: ""
