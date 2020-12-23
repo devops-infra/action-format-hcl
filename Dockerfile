@@ -1,5 +1,5 @@
 # Instead of building from scratch pull my other docker image
-FROM devopsinfra/docker-terragrunt:latest as builder
+FROM devopsinfra/docker-terragrunt:tf-0.14.3-tg-0.26.7 as builder
 
 # Use a clean tiny image to store artifacts in
 FROM alpine:3.11
