@@ -18,7 +18,12 @@ echo "  dir: ${INPUT_DIR}"
 # Remap input variables as parameters for format-hcl
 LIST="-list=${INPUT_LIST}"
 WRITE="-write=${INPUT_WRITE}"
-IGNORE="-ignore=${INPUT_IGNORE}"
+
+if [[ -n "${INPUT_IGNORE}" ]]; then
+  IGNORE="-ignore=${INPUT_IGNORE}"
+else
+  IGNORE=""
+fi
 
 if [[ "${INPUT_DIFF}" == "true" ]]; then
   DIFF="-diff"
