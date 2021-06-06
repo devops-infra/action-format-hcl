@@ -50,16 +50,15 @@ COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/fmt.sh /usr/
 COPY entrypoint.sh /
 
 # Install needed packages
-RUN set -eux \
-  && chmod +x /entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh \
-  && apk update --no-cache \
-  && apk upgrade --no-cache \
-  && apk add --no-cache bash \
-  && apk add --no-cache git \
-  && rm -rf /var/cache/* \
-  && rm -rf /root/.cache/*
+RUN set -eux ;\
+  chmod +x /entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh ;\
+  apk update --no-cache ;\
+  apk add --no-cache bash=5.0.11-r1 ;\
+  apk add --no-cache git=2.24.4-r0 ;\
+  rm -rf /var/cache/* ;\
+  rm -rf /root/.cache/*
 
 # Finish up
-CMD terraform --version
+CMD ["terraform --version"]
 WORKDIR /github/workspace
-ENTRYPOINT /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
