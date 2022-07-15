@@ -50,6 +50,7 @@ COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/fmt.sh /usr/
 COPY entrypoint.sh /
 
 # Install needed packages
+# hadolint ignore=DL3008
 RUN set -eux ;\
   apt-get update -y ;\
   apt-get install --no-install-recommends -y \
