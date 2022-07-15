@@ -1,8 +1,8 @@
 # Instead of building from scratch pull my other docker image
-FROM devopsinfra/docker-terragrunt:tf-1.1.7-tg-0.36.6 as builder
+FROM devopsinfra/docker-terragrunt:slim-tf-1.2.5-tg-0.38.5 as builder
 
 # Use a clean tiny image to store artifacts in
-FROM alpine:3.16.0
+FROM ubuntu:jammy-20220531
 
 # Labels for http://label-schema.org/rc1/#build-time-labels
 # And for https://github.com/opencontainers/image-spec/blob/master/annotations.md
@@ -50,14 +50,14 @@ COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/fmt.sh /usr/
 COPY entrypoint.sh /
 
 # Install needed packages
+# hadolint ignore=DL3008
 RUN set -eux ;\
+  apt-get update -y ;\
+  apt-get install --no-install-recommends -y \
+    git ;\
   chmod +x /entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh ;\
-  apk update --no-cache ;\
-  apk add --no-cache \
-    bash~=5.1.16 \
-    git~=2.36.1 ;\
-  rm -rf /var/cache/* ;\
-  rm -rf /root/.cache/*
+  apt-get clean ;\
+  rm -rf /var/lib/apt/lists/*
 
 # Finish up
 CMD ["terraform --version"]

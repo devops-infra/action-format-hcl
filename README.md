@@ -44,15 +44,15 @@ Features:
         dir: "modules"
 ```
 
-Input Variable | Required | Default |Description
-:--- | :---: | :---: | :---
-list | No | `false` | List files containing formatting inconsistencies.
-write | No | `true` | Overwrite input files. Disabled if using check.
-ignore | No | `""` | Comma separated list of paths to ignore. Only for .hcl files.
-diff | No | `false` | Display diffs of formatting changes.
-check | No | `false` | Check if files are malformatted.
-recursive | No | `true` | Also process files in subdirectories.
-dir | No | `""` | Path to be checked. Current dir as default.
+| Input Variable | Required | Default | Description                                                   |
+| -------------- | -------- | ------- | ------------------------------------------------------------- |
+| list           | No       | `false` | List files containing formatting inconsistencies.             |
+| write          | No       | `true`  | Overwrite input files. Disabled if using check.               |
+| ignore         | No       | `""`    | Comma separated list of paths to ignore. Only for .hcl files. |
+| diff           | No       | `false` | Display diffs of formatting changes.                          |
+| check          | No       | `false` | Check if files are malformatted.                              |
+| recursive      | No       | `true`  | Also process files in subdirectories.                         |
+| dir            | No       | `""`    | Path to be checked. Current dir as default.                   |
 
 
 ## Examples

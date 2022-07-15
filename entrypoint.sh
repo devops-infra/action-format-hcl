@@ -54,7 +54,7 @@ fi
 RET_CODE=$?
 
 # List of changed files
-FILES_CHANGED=$(git diff --staged --name-status)
+FILES_CHANGED=$(git diff --cached --name-status)
 
 # Info about changed files
 if [[ -n ${FILES_CHANGED} ]]; then
