@@ -1,5 +1,5 @@
 # Instead of building from scratch pull my other docker image
-FROM devopsinfra/docker-terragrunt:slim-tf-1.2.5-tg-0.38.5 as builder
+FROM devopsinfra/docker-terragrunt:slim-tf-1.2.5-tg-0.38.6 as builder
 
 # Use a clean tiny image to store artifacts in
 FROM ubuntu:jammy-20220531
