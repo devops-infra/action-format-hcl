@@ -2,7 +2,7 @@
 FROM devopsinfra/docker-terragrunt:slim-tf-1.2.5-tg-0.38.6 as builder
 
 # Use a clean tiny image to store artifacts in
-FROM ubuntu:jammy-20221003
+FROM ubuntu:jammy-20221020
 
 # Labels for http://label-schema.org/rc1/#build-time-labels
 # And for https://github.com/opencontainers/image-spec/blob/master/annotations.md
