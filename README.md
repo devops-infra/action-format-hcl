@@ -33,7 +33,7 @@ Features:
 
 ```yaml
     - name: Fail on malformatted files
-      uses: devops-infra/action-format-hcl@v0.3.1
+      uses: devops-infra/action-format-hcl@v0.3.2
       with:
         list: false
         write: true
@@ -69,7 +69,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Fail on malformatted files
-      uses: devops-infra/action-format-hcl@v0.3.1
+      uses: devops-infra/action-format-hcl@v0.3.2
       with:
         check: true
 ```
@@ -86,7 +86,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Format HCL files
-      uses: devops-infra/action-format-hcl@v0.3.1
+      uses: devops-infra/action-format-hcl@v0.3.2
     - name: Commit changes to repo
       uses: devops-infra/action-commit-push@master
       with:
