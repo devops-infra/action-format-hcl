@@ -54,7 +54,8 @@ fi
 RET_CODE=$?
 
 # List of changed files
-FILES_CHANGED=$(git diff --cached --name-status)
+touch /tmp/time_compare
+FILES_CHANGED=$(find . -newer /tmp/time_compare -type f)
 
 # Info about changed files
 if [[ -n ${FILES_CHANGED} ]]; then
