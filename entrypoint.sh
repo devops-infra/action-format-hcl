@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 # Return code
 RET_CODE=0
 
