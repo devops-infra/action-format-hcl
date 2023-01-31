@@ -53,8 +53,6 @@ COPY entrypoint.sh /
 # hadolint ignore=DL3008
 RUN set -eux ;\
   apt-get update -y ;\
-  apt-get install --no-install-recommends -y \
-    git ;\
   chmod +x /entrypoint.sh /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh ;\
   apt-get clean ;\
   rm -rf /var/lib/apt/lists/*
