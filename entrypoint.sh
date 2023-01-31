@@ -50,11 +50,11 @@ else
 fi
 
 # Run main action
-/usr/bin/format-hcl "${LIST} ${WRITE} ${IGNORE} ${DIFF} ${CHECK} ${RECURSIVE} ${DIR}"
+touch /tmp/time_compare
+/usr/bin/format-hcl ${LIST} ${WRITE} ${IGNORE} ${DIFF} ${CHECK} ${RECURSIVE} ${DIR}
 RET_CODE=$?
 
 # List of changed files
-touch /tmp/time_compare
 FILES_CHANGED=$(find . -newer /tmp/time_compare -type f)
 
 # Info about changed files
