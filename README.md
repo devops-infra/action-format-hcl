@@ -45,9 +45,9 @@ Features:
 ```
 
 | Input Variable | Required | Default | Description                                                   |
-| -------------- | -------- | ------- | ------------------------------------------------------------- |
+| -------------- | -------- | ------- |---------------------------------------------------------------|
 | list           | No       | `false` | List files containing formatting inconsistencies.             |
-| write          | No       | `true`  | Overwrite input files. Disabled if using check.               |
+| write          | No       | `true`  | Overwrite input files. Should be disabled if using check.     |
 | ignore         | No       | `""`    | Comma separated list of paths to ignore. Only for .hcl files. |
 | diff           | No       | `false` | Display diffs of formatting changes.                          |
 | check          | No       | `false` | Check if files are malformatted.                              |
