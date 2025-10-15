@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -Eeuo pipefail
+
 # Return code
 RET_CODE=0
 
@@ -8,6 +10,7 @@ echo "Inputs:"
 echo "  list: ${INPUT_LIST}"
 echo "  write: ${INPUT_WRITE}"
 echo "  ignore: ${INPUT_IGNORE}"
+#shellcheck disable=SC2153
 echo "  diff: ${INPUT_DIFF}"
 echo "  check: ${INPUT_CHECK}"
 echo "  recursive: ${INPUT_RECURSIVE}"
@@ -49,7 +52,7 @@ fi
 
 # Run main action
 touch /tmp/time_compare
-/usr/bin/format-hcl ${LIST} ${WRITE} ${IGNORE} ${DIFF} ${CHECK} ${RECURSIVE} ${DIR}
+/usr/bin/format-hcl "${LIST}" "${WRITE}" "${IGNORE}" "${DIFF}" "${CHECK}" "${RECURSIVE}" "${DIR}"
 RET_CODE=$?
 
 # List of changed files
