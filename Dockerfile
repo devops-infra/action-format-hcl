@@ -2,7 +2,7 @@
 FROM devopsinfra/docker-terragrunt:slim-latest AS builder
 
 # Use a clean tiny image to store artifacts in
-FROM ubuntu:25.10
+FROM ubuntu:questing-20251007
 
 # Copy all needed files
 COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh /usr/bin/
