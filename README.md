@@ -1,23 +1,23 @@
 # GitHub Action for formating HCL files
-
 **GitHub Action automatically formatting all [HCL](https://github.com/hashicorp/hcl) and [TF](https://www.terraform.io/docs/configuration/index.html) files (.hcl, .tf, .tfvars).**
 
 
 ## 📦 Available on
-
 - **Docker Hub:** [devopsinfra/action-format-hcl:latest](https://hub.docker.com/repository/docker/devopsinfra/action-format-hcl)
 - **GitHub Packages:** [ghcr.io/devops-infra/action-format-hcl:latest](https://github.com/devops-infra/action-format-hcl/pkgs/container/action-format-hcl)
 
 
 ## ✨ Features
-
 * Container is a stripped down image of my other creation - [devopsinfra/docker-terragrunt](https://github.com/devopsinfra/docker-terragrunt) - framework for managing Infrastructure-as-a-Code.
 * Main use will be everywhere where [Terraform](https://github.com/hashicorp/terraform) or [Terragrunt](https://github.com/gruntwork-io/terragrunt) is used.
 * Using combination of my wrapper for [cytopia](https://github.com/cytopia)'s [docker-terragrunt-fmt](https://github.com/cytopia/docker-terragrunt-fmt).
 
 
-## 📊 Badges
+## 🔗 Related Actions
+**Useful in combination with my other action [devops-infra/action-commit-push](https://github.com/devops-infra/action-commit-push).**
 
+
+## 📊 Badges
 [
 ![GitHub repo](https://img.shields.io/badge/GitHub-devops--infra%2Faction--format--hcl-blueviolet.svg?style=plastic&logo=github)
 ![GitHub last commit](https://img.shields.io/github/last-commit/devops-infra/action-format-hcl?color=blueviolet&logo=github&style=plastic&label=Last%20commit)
@@ -33,8 +33,14 @@
 ](https://hub.docker.com/r/devopsinfra/action-format-hcl "shields.io")
 
 
-## 📖 API Reference
+## 🏷️ Version Tags: vX, vX.Y, vX.Y.Z
+This action supports three tag levels for flexible versioning:
+- `vX`: latest patch of the major version (e.g., `v1`).
+- `vX.Y`: latest patch of the minor version (e.g., `v1.2`).
+- `vX.Y.Z`: fixed to a specific release (e.g., `v1.2.3`).
 
+
+## 📖 API Reference
 ```yaml
     - name: Run the Action
       uses: devops-infra/action-format-hcl@v1.0.0
@@ -50,7 +56,6 @@
 
 
 ### 🔧 Input Parameters
-
 | Input Variable | Required | Default | Description                                                   |
 |----------------|----------|---------|---------------------------------------------------------------|
 | `list`         | No       | `false` | List files containing formatting inconsistencies.             |
@@ -63,7 +68,6 @@
 
 
 ### 📤 Outputs Parameters
-
 | Output          | Description           |
 |-----------------|-----------------------|
 | `files_changed` | List of changed files |
@@ -72,7 +76,6 @@
 ## 💻 Usage Examples
 
 ### 📝 Basic Example
-
 Action can fail if malformed files will be found.
 
 ```yaml
@@ -93,7 +96,6 @@ jobs:
 ```
 
 ### 🔀 Advanced Example
-
 Action can automatically format all HCL files and commit updated files back to the repository using my other action [action-commit-push](https://github.com/devops-infra/action-commit-push).
 
 ```yaml
@@ -118,24 +120,16 @@ jobs:
 ```
 
 
-## 🔗 Related Actions
-
-- [devops-infra/action-commit-push](https://github.com/devops-infra/action-commit-push) - Commit and push changes to a git repository
-
-
 ## 🤝 Contributing
-
 Contributions are welcome! See [CONTRIBUTING](https://github.com/devops-infra/.github/blob/master/CONTRIBUTING.md).
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
 ## 📄 License
-
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 
 ## 💬 Support
-
 If you have any questions or need help, please:
 - 📝 Create an [issue](https://github.com/devops-infra/action-format-hcl/issues)
 - 🌟 Star this repository if you find it useful!
