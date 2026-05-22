@@ -5,6 +5,15 @@ set -Eeuo pipefail
 # Return code
 RET_CODE=0
 
+# Normalize inputs with safe defaults
+INPUT_LIST="${INPUT_LIST:-false}"
+INPUT_WRITE="${INPUT_WRITE:-true}"
+INPUT_IGNORE="${INPUT_IGNORE:-}"
+INPUT_DIFF="${INPUT_DIFF:-false}"
+INPUT_CHECK="${INPUT_CHECK:-false}"
+INPUT_RECURSIVE="${INPUT_RECURSIVE:-true}"
+INPUT_DIR="${INPUT_DIR:-.}"
+
 # Print input variables
 echo "Inputs:"
 echo "  list: ${INPUT_LIST}"
@@ -17,42 +26,29 @@ echo "  recursive: ${INPUT_RECURSIVE}"
 echo "  dir: ${INPUT_DIR}"
 
 # Remap input variables as parameters for format-hcl
-LIST="-list=${INPUT_LIST}"
-WRITE="-write=${INPUT_WRITE}"
+ARGS=("-list=${INPUT_LIST}" "-write=${INPUT_WRITE}")
 
 if [[ -n "${INPUT_IGNORE}" ]]; then
-  IGNORE="-ignore=${INPUT_IGNORE}"
-else
-  IGNORE=""
+  ARGS+=("-ignore=${INPUT_IGNORE}")
 fi
 
 if [[ "${INPUT_DIFF}" == "true" ]]; then
-  DIFF="-diff"
-else
-  DIFF=""
+  ARGS+=("-diff")
 fi
 
 if [[ "${INPUT_CHECK}" == "true" ]]; then
-  CHECK="-check"
-else
-  CHECK=""
+  ARGS+=("-check")
 fi
 
 if [[ "${INPUT_RECURSIVE}" == "true" ]]; then
-  RECURSIVE="-recursive"
-else
-  RECURSIVE=""
+  ARGS+=("-recursive")
 fi
 
-if [[ -n "${INPUT_DIR}" ]]; then
-  DIR="${INPUT_DIR}"
-else
-  DIR=""
-fi
+ARGS+=("${INPUT_DIR}")
 
 # Run main action
 touch /tmp/time_compare
-/usr/bin/format-hcl "${LIST}" "${WRITE}" "${IGNORE}" "${DIFF}" "${CHECK}" "${RECURSIVE}" "${DIR}"
+/usr/bin/format-hcl "${ARGS[@]}"
 RET_CODE=$?
 
 # List of changed files

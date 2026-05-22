@@ -12,6 +12,12 @@ commandTests:
       - -lc
       - command -v bash >/dev/null 2>&1 && command -v terraform >/dev/null 2>&1 && command -v format-hcl >/dev/null 2>&1 && command -v fmt.sh >/dev/null 2>&1 && command -v terragrunt-fmt.sh >/dev/null 2>&1
 
+  - name: Entrypoint handles empty dir input
+    command: bash
+    args:
+      - -lc
+      - INPUT_LIST=false INPUT_WRITE=true INPUT_IGNORE='' INPUT_DIFF=false INPUT_CHECK=false INPUT_RECURSIVE=true INPUT_DIR='' /entrypoint.sh >/tmp/entrypoint.log 2>&1 || (cat /tmp/entrypoint.log && exit 1)
+
   - name: Apt cache cleaned
     command: bash
     args:
