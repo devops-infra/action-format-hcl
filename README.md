@@ -45,7 +45,7 @@ This action supports three tag levels for flexible versioning:
 ## 📖 API Reference
 ```yaml
     - name: Run the Action
-      uses: devops-infra/action-format-hcl@v1.0.3
+      uses: devops-infra/action-format-hcl@v1.1.0
       with:
         list: false
         write: true
@@ -92,7 +92,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Fail on malformatted files
-      uses: devops-infra/action-format-hcl@v1.0.3
+      uses: devops-infra/action-format-hcl@v1.1.0
       with:
         check: true
 ```
@@ -112,7 +112,7 @@ jobs:
       uses: actions/checkout@v5
 
     - name: Format HCL files
-      uses: devops-infra/action-format-hcl@v1.0.3
+      uses: devops-infra/action-format-hcl@v1.1.0
 
     - name: Commit changes to repo
       uses: devops-infra/action-commit-push@v1
@@ -137,10 +137,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - uses: devops-infra/action-format-hcl@v1.0.3
+      - uses: devops-infra/action-format-hcl@v1.1.0
         id: pin-patch
 
-      - uses: devops-infra/action-format-hcl@v1.0
+      - uses: devops-infra/action-format-hcl@v1.1
         id: pin-minor
 
       - uses: devops-infra/action-format-hcl@v1
