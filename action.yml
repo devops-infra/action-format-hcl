@@ -29,7 +29,7 @@ inputs:
   dir:
     description: Path to be checked. Current dir as default.
     required: false
-    default: ""
+    default: "."
 outputs:
   files_changed:
     description: List of formatted files

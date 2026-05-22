@@ -66,7 +66,7 @@ This action supports three tag levels for flexible versioning:
 | `diff`         | No       | `false` | Display diffs of formatting changes.                          |
 | `check`        | No       | `false` | Check if files are malformatted.                              |
 | `recursive`    | No       | `true`  | Also process files in subdirectories.                         |
-| `dir`          | No       | `""`    | Path to be checked. Current dir as default.                   |
+| `dir`          | No       | `"."`   | Path to be checked. Current dir as default.                   |
 
 
 ### 📤 Output Parameters
