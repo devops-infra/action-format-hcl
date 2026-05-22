@@ -1,4 +1,4 @@
-# GitHub Action for formating HCL files
+# GitHub Action for formatting HCL files
 **GitHub Action automatically formatting all [HCL](https://github.com/hashicorp/hcl) and [TF](https://www.terraform.io/docs/configuration/index.html) files (.hcl, .tf, .tfvars).**
 
 
@@ -69,7 +69,7 @@ This action supports three tag levels for flexible versioning:
 | `dir`          | No       | `""`    | Path to be checked. Current dir as default.                   |
 
 
-### 📤 Outputs Parameters
+### 📤 Output Parameters
 | Output          | Description           |
 |-----------------|-----------------------|
 | `files_changed` | List of changed files |
@@ -119,6 +119,32 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         commit_prefix: "[AUTO-FORMAT-HCL]"
+```
+
+
+### 🎯 Use specific version
+Pick the tag level based on your stability needs:
+- `vX.Y.Z`: exact immutable release (most predictable)
+- `vX.Y`: latest patch within one minor line
+- `vX`: latest patch within one major line
+
+```yaml
+name: Use pinned action version
+on: [push]
+jobs:
+  format-hcl:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: devops-infra/action-format-hcl@v1.0.2
+        id: pin-patch
+
+      - uses: devops-infra/action-format-hcl@v1.0
+        id: pin-minor
+
+      - uses: devops-infra/action-format-hcl@v1
+        id: pin-major
 ```
 
 
