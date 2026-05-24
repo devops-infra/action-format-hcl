@@ -25,6 +25,11 @@ echo "  check: ${INPUT_CHECK}"
 echo "  recursive: ${INPUT_RECURSIVE}"
 echo "  dir: ${INPUT_DIR}"
 
+if [[ "${INPUT_CHECK}" == "true" && "${INPUT_WRITE}" == "true" ]]; then
+  echo "[INFO] check=true requires write=false; overriding write to false"
+  INPUT_WRITE="false"
+fi
+
 # Remap input variables as parameters for format-hcl
 ARGS=("-list=${INPUT_LIST}" "-write=${INPUT_WRITE}")
 

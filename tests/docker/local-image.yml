@@ -18,6 +18,19 @@ commandTests:
       - -lc
       - INPUT_LIST=false INPUT_WRITE=true INPUT_IGNORE='' INPUT_DIFF=false INPUT_CHECK=false INPUT_RECURSIVE=true INPUT_DIR='' /entrypoint.sh >/tmp/entrypoint.log 2>&1 || (cat /tmp/entrypoint.log && exit 1)
 
+  - name: Check mode disables write automatically
+    command: bash
+    args:
+      - -lc
+      - |
+        mkdir -p /tmp/check-write-conflict
+        printf 'locals{a=1}\n' > /tmp/check-write-conflict/main.tf
+        INPUT_LIST=false INPUT_WRITE=true INPUT_IGNORE='' \
+          INPUT_DIFF=false INPUT_CHECK=true INPUT_RECURSIVE=true \
+          INPUT_DIR='/tmp/check-write-conflict' /entrypoint.sh \
+          >/tmp/check-write.log 2>&1 || (cat /tmp/check-write.log && exit 1)
+        grep -q 'check=true requires write=false; overriding write to false' /tmp/check-write.log
+
   - name: Apt cache cleaned
     command: bash
     args:
