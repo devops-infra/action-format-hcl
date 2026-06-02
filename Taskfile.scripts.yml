@@ -257,15 +257,22 @@ tasks:
 
         base_image="$(awk '
           toupper($1) == "FROM" {
-            image=$2
-            if (image ~ /^alpine(:|$)/) {
+            i = 2
+            while (i <= NF && $i ~ /^--/) {
+              i++
+            }
+            if (i <= NF) {
+              image = $i
+            }
+          }
+          END {
+            if (image != "") {
               print image
-              exit
             }
           }
         ' Dockerfile)"
         if [ -z "$base_image" ]; then
-          echo "INFO: No Alpine runtime image found in Dockerfile; nothing to update"
+          echo "INFO: Could not resolve base image; nothing to update"
           exit 0
         fi
 
