@@ -4,7 +4,7 @@ commandTests:
   - name: OS version check
     command: cat
     args: [/etc/os-release]
-    expectedOutput: [VERSION_ID="25\.10"]
+    expectedOutput: [VERSION_ID=3\.23]
 
   - name: Required tools installed
     command: bash
@@ -31,11 +31,14 @@ commandTests:
           >/tmp/check-write.log 2>&1 || (cat /tmp/check-write.log && exit 1)
         grep -q 'check=true requires write=false; overriding write to false' /tmp/check-write.log
 
-  - name: Apt cache cleaned
+  - name: Temporary and APK cache cleaned
     command: bash
     args:
       - -lc
-      - test ! -d /var/lib/apt/lists || test -z "$(find /var/lib/apt/lists -mindepth 1 -maxdepth 1 2>/dev/null)"
+      - >-
+        test ! -f /tmp/alpine-packages.txt &&
+        (test ! -d /var/cache/apk || test -z "$(find /var/cache/apk -mindepth 1 -maxdepth 1 2>/dev/null)") &&
+        (test ! -d /root/.cache || test -z "$(find /root/.cache -mindepth 1 -maxdepth 1 2>/dev/null)")
 
 fileExistenceTests:
   - name: entrypoint exists
