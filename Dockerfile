@@ -21,6 +21,6 @@ RUN set -eux; \
   rm -rf /tmp/*
 
 # Finish up
-CMD ["terraform", "version"]
+CMD ["terraform", "--version"]
 WORKDIR /github/workspace
 ENTRYPOINT ["/entrypoint.sh"]
