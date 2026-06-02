@@ -1,3 +1,4 @@
+FROM hashicorp/terraform:1.15 AS terraform
 # Instead of building from scratch pull my other docker image
 FROM devopsinfra/docker-terragrunt:slim-latest AS builder
 
@@ -5,7 +6,8 @@ FROM devopsinfra/docker-terragrunt:slim-latest AS builder
 FROM alpine:3.23.4
 
 # Copy all needed files
-COPY --from=builder /usr/bin/terraform /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh /usr/bin/
+COPY --from=terraform /usr/bin/terraform /usr/bin/terraform
+COPY --from=builder /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh /usr/bin/
 COPY entrypoint.sh /
 COPY alpine-packages.txt /tmp/alpine-packages.txt
 
