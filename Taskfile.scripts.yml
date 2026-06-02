@@ -255,9 +255,17 @@ tasks:
           exit 0
         fi
 
-        base_image="$(sed -nE 's/^FROM[[:space:]]+([^[:space:]]+).*/\1/p' Dockerfile | head -1)"
+        base_image="$(awk '
+          toupper($1) == "FROM" {
+            image=$2
+            if (image ~ /^alpine(:|$)/) {
+              print image
+              exit
+            }
+          }
+        ' Dockerfile)"
         if [ -z "$base_image" ]; then
-          echo "INFO: Could not resolve base image; nothing to update"
+          echo "INFO: No Alpine runtime image found in Dockerfile; nothing to update"
           exit 0
         fi
 
