@@ -6,7 +6,7 @@ FROM devopsinfra/docker-terragrunt:slim-latest AS builder
 FROM alpine:3.23.4
 
 # Copy all needed files
-COPY --from=terraform /usr/bin/terraform /usr/bin/terraform
+COPY --from=terraform /bin/terraform /usr/bin/terraform
 COPY --from=builder /usr/bin/format-hcl /usr/bin/fmt.sh /usr/bin/terragrunt-fmt.sh /usr/bin/
 COPY entrypoint.sh /
 COPY alpine-packages.txt /tmp/alpine-packages.txt
