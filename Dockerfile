@@ -3,7 +3,7 @@ FROM hashicorp/terraform:1.15 AS terraform
 FROM devopsinfra/docker-terragrunt:slim-latest AS builder
 
 # Use a clean tiny image to store artifacts in
-FROM alpine:3.23.4
+FROM alpine:3.24.1
 
 # Copy all needed files
 COPY --from=terraform /bin/terraform /usr/bin/terraform
