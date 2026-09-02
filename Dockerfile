@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.15 AS terraform
+FROM hashicorp/terraform:1.16 AS terraform
 # Instead of building from scratch pull my other docker image
 FROM devopsinfra/docker-terragrunt:slim-latest AS builder
 
