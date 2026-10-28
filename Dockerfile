@@ -1,9 +1,9 @@
-FROM hashicorp/terraform:1.16 AS terraform
+FROM hashicorp/terraform:1.17 AS terraform
 # Instead of building from scratch pull my other docker image
 FROM devopsinfra/docker-terragrunt:slim-latest AS builder
 
 # Use a clean tiny image to store artifacts in
-FROM alpine:3.24.2
+FROM alpine:3.24.3
 
 # Copy all needed files
 COPY --from=terraform /bin/terraform /usr/bin/terraform
